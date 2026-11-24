@@ -1,3 +1,4 @@
+
 name: Build Windows Installer
 
 on:
@@ -9,6 +10,7 @@ on:
 jobs:
   build-windows:
     runs-on: windows-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -33,7 +35,7 @@ jobs:
           pip install -r requirements-build.txt
           pyinstaller pyinstaller_backend.spec --noconfirm --clean
 
-       - name: Build Electron installer
+      - name: Build Electron installer
         working-directory: desktop
         run: |
           npm install --no-audit --no-fund
