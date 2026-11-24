@@ -1,0 +1,53 @@
+name: Build Windows Installer
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build frontend
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run build
+
+      - name: Build backend with PyInstaller
+        working-directory: backend
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-build.txt
+          pyinstaller pyinstaller_backend.spec --noconfirm --clean
+
+      - name: Build Electron installer
+        working-directory: desktop
+        run: |
+          npm ci
+          npm run dist:win
+
+      - name: Copy installer to exe/
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path exe | Out-Null
+          Copy-Item desktop/dist/*.exe exe/ -Force
+          Get-ChildItem exe
+
+      - name: Upload installer artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-installer
+          path: exe/*.exe

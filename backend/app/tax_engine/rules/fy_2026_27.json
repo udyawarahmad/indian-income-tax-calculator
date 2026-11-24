@@ -1,0 +1,146 @@
+{
+  "financial_year": "2026-27",
+  "assessment_year": "2027-28",
+  "label": "FY 2026-27 (AY 2027-28)",
+  "effective_from": "2026-04-01",
+  "effective_to": "2027-03-31",
+  "verified_at": "2026-11-24",
+  "verification_status": "researched_public_sources",
+  "requires_verification": [
+    "Capital gains: debt mutual fund deemed-STCG treatment should be validated against the exact Income-tax Act 2025 section mapping for the taxpayer's acquisition date.",
+    "Property LTCG grandfathering (pre-23-Jul-2024) applies for resident individual/HUF; implementation assumes this eligibility and should be validated for edge cases.",
+    "Surcharge cap at 15% for specified special-rate incomes (111A/112A/112/dividends) is encoded; confirm applicability for all capital gain subtypes in production use.",
+    "Section references include both legacy 1961 Act and Income-tax Act 2025 naming in notes where useful; legal citation mapping should be reviewed before professional use."
+  ],
+  "sources": [
+    "https://taxgarden.in/blog/income-tax-slab-rates-fy-2026-27-ay-2027-28",
+    "https://taxgarden.in/blog/section-87a-rebate-ay-2026-27-eligibility-limit",
+    "https://taxgarden.in/blog/deductions-allowed-new-tax-regime-section-115bac-ay-2026-27",
+    "https://www.bajajhousingfinance.in/income-tax-slab",
+    "https://incometaxindia.gov.in (tax rates / rules pages referenced by secondary sources; verify directly before filing)"
+  ],
+  "cess": {
+    "health_and_education_cess_rate": 0.04
+  },
+  "new_regime": {
+    "default": true,
+    "slabs": [
+      {"min": 0, "max": 400000, "rate": 0.0},
+      {"min": 400000, "max": 800000, "rate": 0.05},
+      {"min": 800000, "max": 1200000, "rate": 0.10},
+      {"min": 1200000, "max": 1600000, "rate": 0.15},
+      {"min": 1600000, "max": 2000000, "rate": 0.20},
+      {"min": 2000000, "max": 2400000, "rate": 0.25},
+      {"min": 2400000, "max": null, "rate": 0.30}
+    ],
+    "standard_deduction": {
+      "salary": 75000,
+      "pension": 75000
+    },
+    "rebate_87a": {
+      "eligible_resident_individual_only": true,
+      "taxable_income_threshold": 1200000,
+      "max_rebate": 60000,
+      "marginal_relief": true,
+      "applicable_on_special_rate_income": false
+    },
+    "surcharge": {
+      "thresholds": [
+        {"min": 0, "max": 5000000, "rate": 0.0},
+        {"min": 5000000, "max": 10000000, "rate": 0.10},
+        {"min": 10000000, "max": 20000000, "rate": 0.15},
+        {"min": 20000000, "max": null, "rate": 0.25}
+      ],
+      "max_rate": 0.25,
+      "marginal_relief": true
+    },
+    "deductions_allowed": {
+      "standard_deduction": true,
+      "section_80ccd_2_employer_nps": true,
+      "section_80cch_2_agniveer": true,
+      "family_pension_57_iia": true,
+      "interest_let_out_property_24b": true,
+      "section_80c": false,
+      "section_80d": false,
+      "section_80g": false,
+      "section_80tta": false,
+      "section_80ttb": false,
+      "section_80ccd_1b": false,
+      "hra_exemption": false,
+      "home_loan_interest_self_occupied": false,
+      "professional_tax": false,
+      "lta": false
+    }
+  },
+  "old_regime": {
+    "default": false,
+    "slabs": {
+      "below_60": [
+        {"min": 0, "max": 250000, "rate": 0.0},
+        {"min": 250000, "max": 500000, "rate": 0.05},
+        {"min": 500000, "max": 1000000, "rate": 0.20},
+        {"min": 1000000, "max": null, "rate": 0.30}
+      ],
+      "senior_60_to_79": [
+        {"min": 0, "max": 300000, "rate": 0.0},
+        {"min": 300000, "max": 500000, "rate": 0.05},
+        {"min": 500000, "max": 1000000, "rate": 0.20},
+        {"min": 1000000, "max": null, "rate": 0.30}
+      ],
+      "super_senior_80_plus": [
+        {"min": 0, "max": 500000, "rate": 0.0},
+        {"min": 500000, "max": 1000000, "rate": 0.20},
+        {"min": 1000000, "max": null, "rate": 0.30}
+      ]
+    },
+    "standard_deduction": {
+      "salary": 50000,
+      "pension": 50000
+    },
+    "rebate_87a": {
+      "eligible_resident_individual_only": true,
+      "taxable_income_threshold": 500000,
+      "max_rebate": 12500,
+      "marginal_relief": false,
+      "applicable_on_special_rate_income": false
+    },
+    "surcharge": {
+      "thresholds": [
+        {"min": 0, "max": 5000000, "rate": 0.0},
+        {"min": 5000000, "max": 10000000, "rate": 0.10},
+        {"min": 10000000, "max": 20000000, "rate": 0.15},
+        {"min": 20000000, "max": 50000000, "rate": 0.25},
+        {"min": 50000000, "max": null, "rate": 0.37}
+      ],
+      "max_rate": 0.37,
+      "marginal_relief": true
+    }
+  },
+  "capital_gains": {
+    "equity_stcg_111a": {"rate": 0.20, "holding_period_months_lt": 12, "stt_required": true},
+    "equity_ltcg_112a": {"rate": 0.125, "holding_period_months_gte": 12, "annual_exemption": 125000, "stt_required": true},
+    "debt_mf_post_2023_04_01": {"taxed_at_slab": true, "note": "Specified mutual funds acquired on/after 2023-04-01 taxed at slab rates; treated as short-term for calculation."},
+    "property_ltcg": {"rate": 0.125, "indexation": false, "holding_period_months_gte": 24, "grandfathering_pre_2024_07_23": {"eligible": "resident_individual_huf", "rate_with_indexation": 0.20}},
+    "other_ltcg": {"rate": 0.125, "indexation": false, "holding_period_months_gte": 24},
+    "other_stcg": {"taxed_at_slab": true},
+    "special_rate_surcharge_cap": 0.15
+  },
+  "deductions": {
+    "section_80c": {"cap": 150000, "old_regime": true, "new_regime": false},
+    "section_80ccd_1b": {"cap": 50000, "old_regime": true, "new_regime": false, "note": "Additional NPS employee contribution over 80C."},
+    "section_80ccd_2": {"old_regime": true, "new_regime": true, "cap_percent_basic_da": {"government": 0.14, "private": 0.14}, "note": "Employer NPS contribution; cap applied as % of Basic+DA."},
+    "section_80d": {
+      "old_regime": true, "new_regime": false,
+      "self_family_non_senior": 25000, "self_family_senior": 50000,
+      "parents_non_senior": 25000, "parents_senior": 50000,
+      "preventive_health_checkup_included_in_limit": 5000
+    },
+    "section_80g": {"old_regime": true, "new_regime": false, "note": "Simplified: user enters eligible donation amount; 100%/50%/limits require careful classification. Calculator applies user-claimed eligible amount capped by gross total income rules where possible and flags for verification."},
+    "section_80tta": {"cap": 10000, "old_regime": true, "new_regime": false, "eligible": "non_senior_individual_huf"},
+    "section_80ttb": {"cap": 50000, "old_regime": true, "new_regime": false, "eligible": "senior"},
+    "section_24b_home_loan_interest": {"self_occupied_cap": 200000, "let_out_no_cap": true, "old_regime": true, "new_regime_self_occupied": false, "new_regime_let_out": true, "new_regime_let_out_loss_setoff_against_other_heads": false},
+    "hra": {"old_regime": true, "new_regime": false},
+    "standard_deduction_salary_pension": {"old_regime": 50000, "new_regime": 75000},
+    "family_pension_57_iia": {"old_regime": {"cap": 15000, "rate": 0.3333333333}, "new_regime": {"cap": 25000, "rate": 0.3333333333}}
+  }
+}
