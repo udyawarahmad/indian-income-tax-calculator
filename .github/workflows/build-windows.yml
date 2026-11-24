@@ -33,10 +33,10 @@ jobs:
           pip install -r requirements-build.txt
           pyinstaller pyinstaller_backend.spec --noconfirm --clean
 
-      - name: Build Electron installer
+       - name: Build Electron installer
         working-directory: desktop
         run: |
-          npm ci
+          npm install --no-audit --no-fund
           npm run dist:win
 
       - name: Copy installer to exe/
